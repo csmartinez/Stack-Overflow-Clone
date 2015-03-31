@@ -2,15 +2,26 @@
 <h4>Questions:</h4>
 <ul>
   <% @questions.each do |question| %>
-  <li>
+
+  <li id="">
+
     <hr>
     Title: <%= link_to question.body, question_path(question) %><br>
     By: <%= question.user.email %>
   </br>
     Published: <%= question.user.created_at.strftime("%b %d %Y") %>
   </br>
-    <% if question.user==current_user %>
-      <%= link_to "Edit Question", edit_question_path(question) %>
+    <% if question.user == current_user %>
+      <button class="btn btn-primary btn-xs" id="edit">Edit</button>
+      <div class="edit_question">
+        <%= form_for question do |f| %>
+          <%= f.label :body %>
+          <%= f.text_field :body, class: 'form-control', required: true %>
+          <br>
+          <%= f.submit class: 'btn btn-success btn-xs', method: "update" %>
+
+          <% end %>
+        </div>
     </br>
       <%= link_to "Delete Question", question_path(question.id), class: "btn btn-xs btn-danger",
       data: {confirm: "You sure you want to delete",
