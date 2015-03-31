@@ -1,1 +1,10 @@
 <h1>Stack Overflow Clone</h1>
+
+<h2>Questions</h2>
+    <% if @questions %>
+      <% @questions.each do |question| %>
+      <ul>
+      <li><h4><%= question.body %></h4></li>
+      </ul>
+    <% end %>
+  <% end %>

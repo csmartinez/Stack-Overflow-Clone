@@ -1,0 +1,9 @@
+<%= render "layouts/errors", object: @question %>
+
+<%= form_for @question do |f| %>
+<%= f.label :body %>
+<%= f.text_field :body, class: 'form-control', required: true %>
+<br>
+<%= f.submit class: 'btn btn-success', method: "update" %>
+
+<% end %>

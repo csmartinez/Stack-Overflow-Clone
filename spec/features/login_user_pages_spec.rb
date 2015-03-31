@@ -22,6 +22,17 @@ describe "the user login process" do
     expect(page). to have_content "Signed in successfully."
   end
 
+  it "logs the user out" do
+    visit root_path
+    user = FactoryGirl.create(:user)
+    click_on "Login"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
+    click_on "Logout"
+    expect(page). to have_content "Signed out successfully."
+  end
+
   it "deletes a user", js: true do
     visit root_path
     click_on "Sign up"

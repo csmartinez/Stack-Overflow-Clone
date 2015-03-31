@@ -1,0 +1,25 @@
+<% if @questions.any? %>
+<h4>Questions:</h4>
+<ul>
+  <% @questions.each do |question| %>
+  <li>
+    <hr>
+    Title: <%= link_to question.body, question_path(question) %><br>
+    By: <%= question.user.email %>
+  </br>
+    Published: <%= question.user.created_at.strftime("%b %d %Y") %>
+  </br>
+    <% if question.user==current_user %>
+      <%= link_to "Edit Question", edit_question_path(question) %>
+    </br>
+      <%= link_to "Delete Question", question_path(question.id), class: "btn btn-xs btn-danger",
+      data: {confirm: "You sure you want to delete",
+        method: "delete"} %>
+    <% end %>
+    <hr>
+  </li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no questions yet!</p>
+<% end %>
