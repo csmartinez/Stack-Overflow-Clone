@@ -15,7 +15,7 @@ gem 'devise'
 
 
 group :development, :test do
-
+  gem 'poltergeist'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'pry'
